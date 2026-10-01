@@ -1,22 +1,35 @@
-# 🔍 Projeto 02: Análise de Índices Ausentes e Otimização de Performance
+<div align="center">
+  <h1>⚙️ DBA Scripts & Manutenção de Banco de Dados</h1>
+  <p><strong>Repositório focado em scripts T-SQL para administração de bancos de dados, backup, segurança, monitoramento de performance e otimização em SQL Server e MySQL.</strong></p>
 
-## 🎯 Contexto do Negócio
-Com o crescimento contínuo da base de dados e do volume de consultas executadas pelos sistemas operacionais e relatórios de CX, consultas lentas e varreduras completas em tabelas (*Table Scans*) podem comprometer a performance geral do servidor de banco de dados.
-
-O objetivo deste projeto de DBA é utilizar as visões de gerenciamento dinâmico (DMVs - *Dynamic Management Views*) nativas do SQL Server para identificar automaticamente:
-1. **Índices Ausentes (*Missing Indexes*):** Sugestões de novos índices calculados pelo próprio Query Optimizer com base no histórico de consultas executadas.
-2. **Índices Não Utilizados (*Unused Indexes*):** Identificação de índices redundantes que geram custo desnecessário de escrita (E/S e espaço em disco) sem trazer benefício para leitura.
-
----
-
-## 🛠️ Tecnologias e Conceitos Utilizados
-* **SGBD:** Microsoft SQL Server
-* **Linguagem:** T-SQL (Transact-SQL)
-* **DMVs / System Views:** `sys.dm_db_missing_index_details`, `sys.dm_db_missing_index_groups`, `sys.dm_db_missing_index_group_stats`, `sys.dm_db_index_usage_stats`.
-* **Conceitos:** Otimização de Performance (*Index Tuning*), Custo de Leitura/Escrita, Redução de *Scans* para *Seeks*.
+  <p>
+    <img src="https://img.shields.io/badge/Database-SQL%20Server%20%7C%20MySQL-CC292B?style=for-the-badge&logo=microsoftsqlserver&logoColor=white" alt="Databases" />
+    <img src="https://img.shields.io/badge/Focus-DBA%20%26%20Database%20Administration-0A66C2?style=for-the-badge" alt="Focus" />
+  </p>
+</div>
 
 ---
 
-## 📂 Estrutura dos Arquivos
+## 📌 Sobre este repositório
+
+Coleção de scripts de automação e rotinas de Administração de Banco de Dados (DBA). O objetivo é garantir a alta disponibilidade, performance, segurança e integridade dos dados que alimentam os sistemas operacionais e de Customer Experience.
+
+---
+
+## 🚀 Projetos de DBA
+
+| # | Projeto | Foco Principal | Conceitos & Ferramentas | Status |
+| :-: | :--- | :--- | :--- | :-: |
+| 01 | [`01-rotina-backup-manutencao`](./01-rotina-backup-manutencao) | Rotina de Backup & Manutenção | Backup Full/Log, Defrag/Reindex, DMVs, `sp_updatestats` | ✅ Concluído |
+| 02 | [`02-indices-ausentes-fragmentados`](./02-indices-ausentes-fragmentados) | Análise de Índices Ausentes | DMVs (`sys.dm_db_missing_index_*`), Index Tuning, T-SQL | ✅ Concluído |
+| 03 | [`03-permissoes-seguranca-lgpd`](./03-permissoes-seguranca-lgpd) | Gestão de Acessos & LGPD | RBAC, `GRANT/DENY`, Auditoria, T-SQL | ✅ Concluído |
+| 04 | `04-monitoramento-locks-deadlocks` | Monitoramento de Locks | `sp_who2`, `sys.dm_exec_requests`, Resolução de bloqueios | ⏳ Em breve |
+| 05 | `05-purga-logs-expurgo` | Purga Segura de Dados Antigos | Exclusão em lotes (`WHILE`, `DELETE TOP`), Transaction Log | ⏳ Em breve |
+
+---
+
+<div align="center">
+  <sub>Desenvolvido por <strong>Sandy Alves</strong> · Conecte-se comigo no <a href="https://linkedin.com/in/SEU_LINKEDIN">LinkedIn</a></sub>
+</div>
 * `missing_indexes.sql`: Consulta T-SQL avançada que cruza DMVs para gerar automaticamente a instrução `CREATE INDEX` com base no custo/benefício e impacto estimado no banco de dados.
 * `unused_indexes.sql`: Script para auditoria de uso dos índices existentes, permitindo a tomada de decisão segura para desativação ou remoção de índices obsoletos.
